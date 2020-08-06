@@ -1,7 +1,7 @@
 #!/bin/sh
 
 docker_api=am-web
-host=http://39.108.14.206:8070
+host=http://cloud.ceiec.com
 
 echo "更改Host"
 

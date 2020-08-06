@@ -67,11 +67,19 @@ services:
       - ./redis/conf:/usr/local/etc/redis
     command:
       redis-server /usr/local/etc/redis/redis.conf
-  
-  swagger:
-    image: zelejs/swagger
-    container_name: swagger
-    privileged: true
-    volumes:
-      - ./swagger/app:/swagger/app
 
+  mysql:
+    container_name: ems-mysql
+    image: 'daocloud.io/library/mysql:5.7'
+    restart: always
+    environment:
+      TZ: "Asia/Shanghai"
+      MYSQL_DATABASE: 'ems'
+      MYSQL_ROOT_PASSWORD: 'ems@ceiec'
+    volumes:
+      - ./ems-mysql/data:/var/lib/mysql
+      - ./ems-mysql/config/my.cnf:/etc/my.cnf
+      - ./ems-mysql/sql_mode.cnf:/etc/mysql/mysql.conf.d/sql_mode.cnf
+      #- ./mall-mysql/init:/docker-entrypoint-initdb.d/
+    ports:
+      - '3306:3306'

@@ -2,9 +2,9 @@
 spring:
   profiles: produce
   datasource:
-      url: jdbc:mysql://120.24.235.88:3306/am?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true
-      username: zb
-      password: zb2014
+      url: jdbc:mysql://ems-mysql:3306/ems?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true
+      username: root
+      password: ems@ceiec
       filters: log4j,wall,mergeStat
       sql-script-encoding: UTF-8
       schema: classpath*:sql/*-schema.sql
