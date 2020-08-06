@@ -1,0 +1,8 @@
+version: "3"
+services:
+  api:
+    image: zelejs/allin-web:jdk11
+    container_name: myapp-api
+    volumes:
+      - ./api:/webapps
+
