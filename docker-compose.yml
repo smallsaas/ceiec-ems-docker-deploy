@@ -68,8 +68,8 @@ services:
     command:
       redis-server /usr/local/etc/redis/redis.conf
 
-  mysql:
-    container_name: ems-mysql
+  am-mysql:
+    container_name: am-mysql
     image: 'daocloud.io/library/mysql:5.7'
     restart: always
     environment:
@@ -77,9 +77,9 @@ services:
       MYSQL_DATABASE: 'ems'
       MYSQL_ROOT_PASSWORD: 'ems@ceiec'
     volumes:
-      - ./ems-mysql/data:/var/lib/mysql
-      - ./ems-mysql/config/my.cnf:/etc/my.cnf
-      - ./ems-mysql/sql_mode.cnf:/etc/mysql/mysql.conf.d/sql_mode.cnf
+      - ./mysql/data:/var/lib/mysql
+      - ./mysql/config/my.cnf:/etc/my.cnf
+      - ./mysql/sql_mode.cnf:/etc/mysql/mysql.conf.d/sql_mode.cnf
       #- ./mall-mysql/init:/docker-entrypoint-initdb.d/
-    ports:
-      - '3306:3306'
+    #ports:
+      #- '3306:3306'
