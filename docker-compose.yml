@@ -13,23 +13,15 @@ services:
     #command: "tail -f /dev/null"
     environment:
       DL_STANDALONE: "am-pack-1.0.0-standalone.jar"
-  io-pdf:
+
+  am-io:
     image: zelejs/allin-web:jdk11
-    container_name: io-pdf
+    container_name: am-io
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - ./io-pdf:/webapps
-      - ./images:/images
+      - ./io-all:/webapps
     environment:
-      DL_STANDALONE: "pdf-export-1.0.0-standalone.jar"
-  io-excel:
-    image: zelejs/allin-web:jdk11
-    container_name: io-excel
-    volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - ./io-excel:/webapps
-    environment:
-      DL_STANDALONE: "excel-export-1.0.0-standalone.jar"
+      DL_STANDALONE: "zero-io-all-1.0.0-standalone.jar"
 
   am-web:
     image: daocloud.io/library/nginx:latest
