@@ -16,10 +16,10 @@ services:
 
   am-io:
     image: zelejs/allin-web:jdk11
-    container_name: am-io 
+    container_name: am-io
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - ./io:/webapps
+      - ./io-all:/webapps
     environment:
       DL_STANDALONE: "zero-io-all-1.0.0-standalone.jar"
 

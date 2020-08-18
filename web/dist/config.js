@@ -1,5 +1,5 @@
 window.MC = {
-  HOST: 'http://cloud.ceiec.com',
+  HOST: 'http://localhost',
   LOGO_TEXT: '',
   LOGO: '',
 };
