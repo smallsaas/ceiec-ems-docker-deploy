@@ -38,8 +38,8 @@ fi
 #fi
 
 
-if [ -f $webapps/web/dist/config.js ];then
-   echo $webapps/web/dist/config.js
+if [ -f $webapps/web/config.js ];then
+   echo $webapps/web/config.js
    sed -i "s/HOST:[[:space:]]*'http:\/\/[0-9a-zA-Z\.]*'/HOST: 'http:\/\/$domain'/" $webapps/web/config.js
    cp $webapps/web/config.js $webapps/web/dist/config.js
 else 
