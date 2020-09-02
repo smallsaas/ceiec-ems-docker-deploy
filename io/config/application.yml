@@ -1,3 +1,4 @@
+---
 spring:
   profiles: produce
   datasource:
@@ -9,7 +10,7 @@ spring:
     schema: classpath*:sql/*-schema.sql
     data: classpath*:sql/*-data.sql
     initialize: false
----
+
 io:
   excel-template-dir: "excel-templates"
 
