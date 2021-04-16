@@ -1,37 +1,47 @@
 version: "3"
 # docker-compose -f docker-compose.yml up --detach --build  ## for recreating the change
 services:
-  am-api:
-    image: zelejs/allin-web:jdk11
+  api:
+    image: ceiec-ems:api
     container_name: am-api
+    build: 
+      context: .
+      dockerfile: ./Dockerfile.release.api
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./api/config:/webapps/config
+      - ./attachments:/attachments
+    depends_on:
+      - mysqlserver
+    command: for dev
+      - "java"
+      - "-jar"
+      - "/webapps/app.jar"
+      - "--spring.profiles.active=greenfield"
+  io:
+    image: ceiec-ems:io
+    build: 
+      context: .
+      dockerfile: ./Dockerfile.release.io
+    container_name: am-io
     privileged: true
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - ./api:/webapps  
-      - ./nginx-gateway/attachments:/attachments
-    environment:
-      DL_STANDALONE: "am-pack-1.0.0-standalone.jar"
-      GREENFIELD: 'run'
 
-  am-io:
-    image: zelejs/allin-web:jdk11
-    container_name: am-io
-    volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - ./io:/webapps
-    environment:
-      DL_STANDALONE: "zero-io-all-1.0.0-standalone.jar"
-      GREENFIELD: 'run'
-
-  am-mysql:
-    container_name: am-mysql
+  # dependency
+  mysqlserver:
+    container_name: mysqlserver
     image: 'daocloud.io/library/mysql:5.7'
+    privileged: true
     restart: always
     environment:
       TZ: "Asia/Shanghai"
       MYSQL_DATABASE: 'ems'
       MYSQL_ROOT_PASSWORD: 'ems@ceiec'
+    # 初始化mysql
     volumes:
       - ./mysql/data:/var/lib/mysql
-      - ./mysql/config/my.cnf:/etc/my.cnf
       - ./mysql/sql_mode.cnf:/etc/mysql/mysql.conf.d/sql_mode.cnf
+      - ./schema.sql:/docker-entrypoint-initdb.d/schema.sql
+    ports:
+      - 3306:3306

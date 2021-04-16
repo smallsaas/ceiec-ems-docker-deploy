@@ -4,15 +4,27 @@ services:
   api:
     image: ceiec-ems:api
     container_name: am-api
+    build: 
+      context: .
+      dockerfile: ./Dockerfile.release.api
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      # - ./api/config:/webapps/config
       - ./attachments:/attachments
+      # config
+      - ./api/config:/webapps/config
     depends_on:
       - redis
       - mysqlserver
+    command: for dev
+      - "java"
+      - "-jar"
+      - "/webapps/app.jar"
+      - "--spring.profiles.active=greenfield"
   io:
     image: ceiec-ems:io
+    build: 
+      context: .
+      dockerfile: ./Dockerfile.release.io
     container_name: am-io
     privileged: true
     volumes:
@@ -20,8 +32,11 @@ services:
 
   web:
     image: ceiec-ems:web
-    privileged: true
+    build: 
+      context: .
+      dockerfile: ./Dockerfile.release.web
     container_name: am-web
+    privileged: true
     volumes:
       - /etc/localtime:/etc/localtime:ro
     volumes:
@@ -44,9 +59,11 @@ services:
       TZ: "Asia/Shanghai"
       MYSQL_DATABASE: 'ems'
       MYSQL_ROOT_PASSWORD: 'ems@ceiec'
+    # 初始化mysql
     volumes:
       - ./mysql/data:/var/lib/mysql
       - ./mysql/sql_mode.cnf:/etc/mysql/mysql.conf.d/sql_mode.cnf
+      - ./schema.sql:/docker-entrypoint-initdb.d/schema.sql
     ports:
       - 3306:3306
                 

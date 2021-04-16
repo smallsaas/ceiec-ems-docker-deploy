@@ -1,38 +1,9 @@
 ## 中电设备管理系统部署
-请参考 [中电设备管理系统部署文档](./中电设备管理系统部署文档.md)
 
-#### 代码目标结构
-ems
- + am
-   + am-equipment
-   + am-fault
-   + am-html
-   + am-pack
-   + am-report
-   + am-warehouse
-   + dashboard
-   + sb-category
-   + sb-document
-   + sb-infrastructure
-   + sb-organization
-   - pom.xml
- + ceiec-ems-docker-deploy
-   + api
-   + gateway
-   + mysql
-   + redis
-   + web
-   - docker-compose.yml
- - .dockerignore
+- 安装 `docker station`
+- 下载 `docker-compose` 编排  [下载](https://github.com/smallsaas/ceiec-ems-docker-deploy/archive/refs/tags/io.zip)
+- 由 `docker station` 执法编排
 
-### 操作步骤
-> 复制 .dockerignore 文件到`ems`根目录
-```
-cp ./ceiec-ems-docker-deploy/.dockerignore .
-```
 
-#### 构建`api`镜像
-```
-sh docker-build.sh
-docker-compose up
-```
+
+

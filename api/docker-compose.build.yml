@@ -11,5 +11,5 @@ services:
     image: ceiec-ems:io
     build:
       context: ../..
-      dockerfile: ./ceiec-ems-docker-deploy/api/Dockerfile.io
+      dockerfile: ./ceiec-ems-docker-deploy/api/Dockerfile.io.release
       
