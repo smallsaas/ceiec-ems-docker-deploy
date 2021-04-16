@@ -1,0 +1,110 @@
+{
+  "convert": [
+    {
+      "field": "status",
+      "newValue": "IN_USE",
+      "oldValue": "使用中",
+      "table": "equipment"
+    },
+    {
+      "field": "status",
+      "newValue": "STAND_BY",
+      "oldValue": "待用",
+      "table": "equipment"
+    },
+    {
+      "field": "change_status",
+      "newValue": "",
+      "oldValue": "无",
+      "table": "equipment"
+    },
+    {
+      "field": "change_status",
+      "newValue": "SCRAPPED",
+      "oldValue": "报废",
+      "table": "equipment"
+    },
+    {
+      "field": "change_status",
+      "newValue": "SEALED",
+      "oldValue": "封存",
+      "table": "equipment"
+    },
+    {
+      "field": "change_status",
+      "newValue": "DISABLED",
+      "oldValue": "停用",
+      "table": "equipment"
+    },
+    {
+      "field": "stock_status",
+      "newValue": "TO_STOCKTAKE",
+      "oldValue": "待盘点",
+      "table": "equipment"
+    },
+    {
+      "field": "stock_status",
+      "newValue": "TO_STOCK_ADJUST",
+      "oldValue": "待调整",
+      "table": "equipment"
+    },
+    {
+      "field": "start_time",
+      "newValue": null,
+      "oldValue": "",
+      "table": "equipment"
+    },
+    {
+      "field": "produce_time",
+      "newValue": null,
+      "oldValue": "",
+      "table": "equipment"
+    }
+  ],
+  "duplicate": 0,
+  "header": 1,
+  "level": 1,
+  "overwrite": 1,
+  "relationOnly": 0,
+  "target": [
+    {
+      "fields": [
+        "project_code",
+        "project_name",
+        "code",
+        "batch_number",
+        "name",
+        "category_name",
+        "installation_site",
+        "warehouse_name",
+        "status",
+        "change_status",
+        "stock_status",
+        "factory",
+        "system",
+        "spec",
+        "material",
+        "machine_code",
+        "brand",
+        "supplier",
+        "start_time",
+        "produce_time",
+        "service_life",
+        "note"
+      ],
+      "table": "equipment",
+      "valueConverterMap": {},
+      "values": []
+    }
+  ],
+  "unique": [
+    {
+      "fields": [
+        "code"
+      ],
+      "table": "equipment",
+      "valueConverterMap": {},
+      "values": []
+    }
+  ]
+}

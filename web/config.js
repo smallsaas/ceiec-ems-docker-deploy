@@ -1,5 +1,5 @@
 window.MC = {
-  HOST: 'http://localhost',
+  HOST: '',
   LOGO_TEXT: '',
   LOGO: '',
 };
