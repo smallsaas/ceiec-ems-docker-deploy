@@ -4,10 +4,11 @@ FROM zelejs/allin-web:alpine-m2 AS M2
 #get-src
 FROM daocloud.io/library/node:12 as src
 WORKDIR /usr/src
-RUN git clone https://github.com/kequandian/zero-io --branch master --single-branch 
+RUN git -c http.sslVerify=false clone https://github.com/kequandian/zero-io.git --branch master --single-branch 
 
 #build-stage
 FROM daocloud.io/library/maven:3.6.0-jdk-11-slim AS build
+
 
 # init .m2 from alpine-m2 image first
 WORKDIR /root/.m2
@@ -16,7 +17,7 @@ RUN --mount=type=cache,id=m2_cache,target=/root/.m2,rw cp -r /root/m2/* /root/.m
 
 ## mvn package
 WORKDIR /usr/src
-COPY --from=src /usr/srczero-io ./zero-io
+COPY --from=src /usr/src/zero-io ./zero-io
 
 WORKDIR /usr/src/zero-io
 RUN --mount=type=cache,id=m2_cache,target=/root/.m2,rw mvn install

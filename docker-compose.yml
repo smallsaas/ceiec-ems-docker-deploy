@@ -11,14 +11,13 @@ services:
     depends_on:
       - redis
       - mysqlserver
+  io:
+    image: ceiec-ems:io
+    container_name: am-io
+    privileged: true
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
 
-  # io:
-  #   image: zelejs/allin-web:jdk11
-  #   container_name: am-io
-  #   privileged: true
-  #   restart: always
-  #   volumes:
-  #     - /etc/localtime:/etc/localtime:ro
   web:
     image: ceiec-ems:web
     privileged: true
