@@ -1,2 +1,7 @@
 FROM daocloud.io/library/nginx:latest
-ADD ./web/dist/* /usr/share/nginx/html/
+
+# gateway
+ADD ./gateway/conf.d/80.conf /etc/nginx/conf.d/80.conf
+
+# dist
+ADD ./web/dist /usr/share/nginx/html/

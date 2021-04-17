@@ -1,10 +1,3 @@
-am:
-  file-host: /attachments
-  file-upload-path: /attachments 
-
-PoolConfig:
-    dateFormat: zh  
-
 ---
 spring:
   profiles: produce
@@ -21,6 +14,22 @@ spring:
 logging:
   level: warn 
   config: config/logback-spring.xml
+
+PoolConfig:
+    dateFormat: zh
+
 am:
-  redis-host: am-redis
+  redis-host: redis
   redis-port: 6379
+
+  file-host: /attachments
+  file-upload-path: /attachments
+
+io:
+  excel-template-dir: excel-templates
+  excel-export-max-rows: 1000
+
+# callout:
+#   remote-auth-uri: http://callout.as.smallsaas.cn
+#   app-id: app
+#   client-id: client

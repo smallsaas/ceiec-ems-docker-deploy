@@ -1,6 +1,10 @@
 FROM adoptopenjdk:11-jre-hotspot
 WORKDIR /webapps
 RUN curl -sL https://github.com/smallsaas/ceiec-ems-docker-deploy/releases/download/standalone/app.jar -o /webapps/app.jar
+# ADD ./api/app.jar  /webapps/app.jar
 
 ADD ./api/config/application.yml /webapps/config/application.yml
+ADD ./api/config/logback-spring.xml /webapps/config/logback-spring.xml
+
+ADD ./io/excel-templates /webapps/excel-templates
 CMD ["java", "-jar", "/webapps/app.jar", "--spring.profiles.active=produce", "--server.port=8080"]

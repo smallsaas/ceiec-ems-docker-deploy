@@ -5,11 +5,12 @@ services:
     image: ceiec-ems:api
     build:
       context: ../..
-      dockerfile: ./ceiec-ems-docker-deploy/api/Dockerfile
+      dockerfile: ./ceiec-ems-docker-deploy/api/Dockerfile.jar
+      # dockerfile: ./ceiec-ems-docker-deploy/api/Dockerfile.src
   
   io: 
     image: ceiec-ems:io
     build:
       context: ../..
-      dockerfile: ./ceiec-ems-docker-deploy/api/Dockerfile.io.release
+      dockerfile: ./ceiec-ems-docker-deploy/api/Dockerfile.src.io
       

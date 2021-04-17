@@ -1,0 +1,21 @@
+{
+
+	"status": {
+		"IN_USE": "使用中",
+		"STAND_BY": "待用"
+	},
+	"change_status": {
+		"": "无",
+		"SCRAPPED": "报废",
+		"SEALED": "封存",
+		"DISABLED": "停用"
+	},
+
+	"stock_status": {
+
+		"TO_STOCKTAKE": "待盘点",
+		"TO_STOCK_ADJUST": "待调整"
+	}
+
+
+}
