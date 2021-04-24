@@ -9,10 +9,8 @@ build/
 *.db
 logs/
 LOG*/
-api/LOG_PATH_IS_UNDEFINEDLOG_FILE_IS_UNDEFINED
-*/config/logback-spring.xml
-*/config/produce.yml
+api/LOG_*
 docker-deploy-lib.sh
 data/
-dist/
+attachments/*
 *.jar

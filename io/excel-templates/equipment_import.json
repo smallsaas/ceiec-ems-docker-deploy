@@ -1,0 +1,49 @@
+{
+  "duplicate": 0,
+  "header": 1,
+  "level": 1,
+  "overwrite": 1,
+  "relationOnly": 0,
+  "target": [
+    {
+      "fields": [
+        "project_code",
+        "project_name",
+        "code",
+        "batch_number",
+        "name",
+        "category_name",
+        "installation_site",
+        "warehouse_name",
+        "status",
+        "change_status",
+        "stock_status",
+        "factory",
+        "system",
+        "spec",
+        "material",
+        "machine_code",
+        "brand",
+        "supplier",
+        "start_time",
+        "produce_time",
+        "service_life",
+        "number",
+        "note"
+      ],
+      "table": "equipment",
+      "valueConverterMap": {},
+      "values": []
+    }
+  ],
+  "unique": [
+    {
+      "fields": [
+        "code"
+      ],
+      "table": "equipment",
+      "valueConverterMap": {},
+      "values": []
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+version: "3"
+# docker-compose -f docker-compose.yml up --detach --build  ## for recreating the change
+services:
+  api:
+    image: ceiec-ems:api
+    build:
+      context: ../..
+      dockerfile: ./ceiec-ems-docker-deploy/api/Dockerfile.src
+  
+  io: 
+    image: ceiec-ems:io
+    build:
+      context: ../..
+      dockerfile: ./ceiec-ems-docker-deploy/api/Dockerfile.src.io
+      

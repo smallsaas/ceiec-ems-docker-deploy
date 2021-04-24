@@ -1,0 +1,8 @@
+version: "3"
+# docker-compose -f docker-compose.yml up --detach --build  ## for recreating the change
+services:
+  dist:
+    image: ceiec-ems:web
+    build:
+      context: ../..
+      dockerfile: ./ceiec-ems-docker-deploy/web/Dockerfile
