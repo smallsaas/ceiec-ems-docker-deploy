@@ -1,5 +1,5 @@
 am:
-  file-host: http://localhost/attachments
+  file-host: /attachments
   file-upload-path: /attachments 
 
 PoolConfig:

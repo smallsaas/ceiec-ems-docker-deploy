@@ -6,14 +6,46 @@ services:
     container_name: am-api
     privileged: true
     restart: always
+    build:
+      context: ..
+      dockerfile: ./ceiec-ems-docker-deploy/api/Dockerfile
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - ./api:/webapps  
-      - ./nginx-gateway/attachments:/attachments
+      - ./am-gateway/attachments:/attachments
       #- ./swagger/app:/swagger/app
     environment:
       DL_STANDALONE: "am-pack-1.0.0-standalone.jar"
-
+    depends_on:
+      - am-redis
+      - am-mysql
+      - am-io
+  am-redis:
+    image: 'daocloud.io/library/redis:3.2.9'
+    container_name: am-redis
+    privileged: true
+    restart: always
+    environment:
+      TZ: "Asia/Shanghai"
+    ports:
+      - 6379:6379
+    volumes:
+      - ./redis/conf:/usr/local/etc/redis
+    command:
+      redis-server /usr/local/etc/redis/redis.conf
+  am-mysql:
+    container_name: am-mysql
+    image: 'daocloud.io/library/mysql:5.7'
+    privileged: true
+    restart: always
+    environment:
+      TZ: "Asia/Shanghai"
+      MYSQL_DATABASE: 'ems'
+      MYSQL_ROOT_PASSWORD: 'ems@ceiec'
+    volumes:
+      - ./mysql/data:/var/lib/mysql
+      #- ./mysql/config/my.cnf:/etc/my.cnf
+      - ./mysql/sql_mode.cnf:/etc/mysql/mysql.conf.d/sql_mode.cnf
   am-io:
     image: zelejs/allin-web:jdk11
     container_name: am-io
@@ -35,46 +67,19 @@ services:
       - ./web/dist:/usr/share/nginx/html
       - ./web/logs:/var/log/nginx
  
-  nginx-gateway:
+  am-gateway:
     image: daocloud.io/library/nginx:latest
-    container_name: nginx-gateway
+    container_name: am-gateway
     privileged: true
     restart: always
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - ./nginx-gateway/nginx.conf:/etc/nginx/nginx.conf
-      - ./nginx-gateway/conf.d:/etc/nginx/conf.d
-      - ./nginx-gateway/logs:/var/log/nginx
-      #- ./nginx-gateway/cert:/cert
-      - ./nginx-gateway/html:/usr/share/nginx/html
-      - ./nginx-gateway/attachments:/usr/share/nginx/html/attachments
+      - ./am-gateway/nginx.conf:/etc/nginx/nginx.conf
+      - ./am-gateway/conf.d:/etc/nginx/conf.d
+      - ./am-gateway/logs:/var/log/nginx
+      #- ./am-gateway/cert:/cert
+      - ./am-gateway/html:/usr/share/nginx/html
+      - ./am-gateway/attachments:/usr/share/nginx/html/attachments
     ports:
-      - '80:80'
+      - '8000:80'
 
-  am-redis:
-    image: 'daocloud.io/library/redis:3.2.9'
-    container_name: am-redis
-    privileged: true
-    restart: always
-    environment:
-      TZ: "Asia/Shanghai"
-    ports:
-      - 6379:6379
-    volumes:
-      - ./redis/conf:/usr/local/etc/redis
-    command:
-      redis-server /usr/local/etc/redis/redis.conf
-
-  am-mysql:
-    container_name: am-mysql
-    image: 'daocloud.io/library/mysql:5.7'
-    privileged: true
-    restart: always
-    environment:
-      TZ: "Asia/Shanghai"
-      MYSQL_DATABASE: 'ems'
-      MYSQL_ROOT_PASSWORD: 'ems@ceiec'
-    volumes:
-      - ./mysql/data:/var/lib/mysql
-      #- ./mysql/config/my.cnf:/etc/my.cnf
-      - ./mysql/sql_mode.cnf:/etc/mysql/mysql.conf.d/sql_mode.cnf
