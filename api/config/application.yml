@@ -1,17 +1,11 @@
-am:
-  file-host: /attachments
-  file-upload-path: /attachments 
-
-PoolConfig:
-    dateFormat: zh  
-
 ---
 spring:
   profiles: produce
   datasource:
-      url: jdbc:mysql://am-mysql:3306/ems?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true
+      url: jdbc:mysql://am-db:3306/ems?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true
       username: root
-      password: ems@ceiec
+      # password: ems@ceiec
+      password: root
       filters: log4j,wall,mergeStat
       sql-script-encoding: UTF-8
       schema: classpath*:sql/*-schema.sql
@@ -21,6 +15,22 @@ spring:
 logging:
   level: warn 
   config: config/logback-spring.xml
+
+PoolConfig:
+    dateFormat: zh
+
 am:
-  redis-host: am-redis
+  redis-host: redis
   redis-port: 6379
+
+  file-host: /attachments
+  file-upload-path: /attachments
+
+io:
+  excel-template-dir: excel-templates
+  excel-export-max-rows: 1000
+
+# callout:
+#   remote-auth-uri: http://callout.as.smallsaas.cn
+#   app-id: app
+#   client-id: client
