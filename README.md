@@ -32,7 +32,6 @@ docker-compose.yml
 ...
 ```
 
-
 #### 构建并运行镜像
 > 进入目录, 选择`startup.cmd`文件，右键选择`powershell`执行
 >
@@ -46,6 +45,18 @@ powershell> docker-compose up --detach --build --remove-orphans
 ```
 
 #### 如何中止服务
-在`powershell`输入终端键盘快捷键 `Ctrl+C` 中止
-> 请不要直接关闭窗口终端
+```shell
+powershell>docker-compose stop 
+```
 
+## 常见问题
+
+#### 硬盘没有共享
+```
+Error response from daemon: status code not OK but 500: {"Message":"Unhandled exception: Drive has not been shared"}
+```
+解决步骤
+> [docker-drive-has-not-been-shared](https://stackoverflow.com/questions/59942110/docker-drive-has-not-been-shared)
+- 打开 docker desktop 
+- 进入设置 -> Resource -> FILESHARING 
+- 增加共享 `c:` 盘 (若部署文件在 `c:` 盘）
