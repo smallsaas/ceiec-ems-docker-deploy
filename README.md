@@ -9,7 +9,7 @@
 #### 下载部署仓库
 https://github.com/smallsaas/ceiec-ems-docker-deploy/archive/refs/tags/ceiec.zip
 >
-> 或访问此链接[下载](https://github.com/smallsaas/ceiec-ems-docker-deploy/releases)
+> 或访问此链接[下载](https://github.com/smallsaas/ceiec-ems-docker-deploy/releases) 并解压
 >
 > 或通过 `git bash`克隆
 ```shell
@@ -34,14 +34,15 @@ docker-compose.yml
 
 
 #### 构建并运行镜像
-> 进入目录, 选择`startup.ps1`文件，右键选择`powershell`执行
+> 进入目录, 选择`startup.cmd`文件，右键选择`powershell`执行
 >
-> 以下为命令行执行方式
+> 或选择解压目录（ceiec-ems-docker-deploy）按鼠标右键在该目录下打开`powershell`
+> 
+> 并执行以下命令
 ```shell
-cd ceiec-ems-docker-deploy
-docker-compose up --detach --build --remove-orphans
-## or
-sh startup.sh
+powershell> ./startup.cmd
+powershell> #or
+powershell> docker-compose up --detach --build --remove-orphans
 ```
 
 #### 如何中止服务
