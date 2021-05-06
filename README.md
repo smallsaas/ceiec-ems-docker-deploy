@@ -16,22 +16,6 @@ https://github.com/smallsaas/ceiec-ems-docker-deploy/archive/refs/tags/ceiec.zip
 git clone https://github.com/smallsaas/ceiec-ems-docker-deploy.git
 ```
 
-#### 下载`app.jar`放置在根目录下
-> 根目录为 `ceiec-ems-docker-deploy`
->
-> 下载地址 | [app.jar](https://github.com/smallsaas/ceiec-ems-docker-deploy/releases/download/app/app.jar)
->
-```shell
-ls ceiec-ems-docker-deploy
-api
-bin
-web
-...
-app.jar
-docker-compose.yml
-...
-```
-
 #### 构建并运行镜像
 > 进入目录, 选择`startup.cmd`文件，右键选择`powershell`执行
 >
