@@ -40,7 +40,7 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - ./logs:/var/log/nginx
-      # - ./gateway/conf.d/80.conf:/etc/nginx/conf.d/80.conf
+      - ./gateway/conf.d:/etc/nginx/conf.d
       #- ./gateway/cert:/cert
       - ./web/static:/usr/share/nginx/html/static
       - ./web/config.js:/usr/share/nginx/html/config.js
